@@ -4,3 +4,4 @@
 *.ERR
 SOURCES/LBA0.EXE
 tags
+.vscode
