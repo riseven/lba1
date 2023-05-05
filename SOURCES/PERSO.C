@@ -1587,16 +1587,8 @@ void AllocateMemory()
 	}
 }
 
-void main(int argc, UBYTE *argv[])
+void ShowBumper()
 {
-	WORD n;
-
-	DoInitialization(argv[0]);
-	ShowAndWaitForLogo();
-	CheckCDRom();
-	AllocateMemory();
-
-#ifndef DEBUG_TOOLS
 	// bumper
 	FadeToBlack(PalettePcx);
 
@@ -1607,18 +1599,22 @@ void main(int argc, UBYTE *argv[])
 
 	TimerPause(4);
 	FadeToBlack(PalettePcx);
+}
 
-	// logo EA
-
+void ShowLogoEA()
+{
 	RessPict(RESS_BUMPER_EA_PCR);
 	TimerPause(2);
 	FadeToBlack(PalettePcx);
+}
 
-	// FLA intro
-
+void ShowFLAIntro()
+{
 	PlayAnimFla("DRAGON3");
-#endif
+}
 
+void ShowMenu()
+{
 	// main game menu
 
 	//	FadeToBlack( PalettePcx ) ;
@@ -1629,7 +1625,22 @@ void main(int argc, UBYTE *argv[])
 	FadeToPal(PtrPal);
 
 	MainGameMenu();
+}
 
+void main(int argc, UBYTE *argv[])
+{
+	DoInitialization(argv[0]);
+	ShowAndWaitForLogo();
+	CheckCDRom();
+	AllocateMemory();
+
+#ifndef DEBUG_TOOLS
+	ShowBumper();
+	ShowLogoEA();
+	ShowFLAIntro();
+#endif
+
+	ShowMenu();
 	TheEnd(PROGRAM_OK, "");
 }
 
