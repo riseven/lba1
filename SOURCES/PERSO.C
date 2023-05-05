@@ -1358,6 +1358,8 @@ void Message(UBYTE *mess, WORD flag)
 
 void DoInitialization(UBYTE *progpath)
 {
+	UBYTE string[256];
+
 	_harderr(Critical_Error_Handler);
 
 #ifdef DEBUG_TOOLS
@@ -1424,7 +1426,6 @@ void main(int argc, UBYTE *argv[])
 	WORD n;
 	ULONG memory;
 	ULONG memotimer;
-	UBYTE string[256];
 
 	DoInitialization(argv[0]);
 
