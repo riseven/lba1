@@ -5,11 +5,11 @@
  *══════════════════════════════════════════════════════════════════════════*/
 /*──────────────────────────────────────────────────────────────────────────*/
 // Cdrom Version si pas define version disk
-#define CDROM 1
+// #define CDROM 1
 
 // mettre ce define pour une version travail seulement
 // en cdrom pas d'importance ATTENTION à supprimer pour version disk
-#define MAGOUILLE_FLA_HD 1
+// #define MAGOUILLE_FLA_HD 1
 
 /*----------------*/
 
