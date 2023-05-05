@@ -2829,7 +2829,7 @@ LONG MainGameMenu()
 		MENUOP_LOAD = 21,
 		MENUOP_QUIT = 22,
 		MENUOP_OPTIONS = 23
-	}
+	};
 
 	WORD select;
 	WORD flag = 0;
