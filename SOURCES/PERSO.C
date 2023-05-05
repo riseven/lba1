@@ -1421,13 +1421,9 @@ void DoInitialization(UBYTE *progpath)
 		TheEnd(NOT_ENOUGH_MEM, "Screen");
 }
 
-void main(int argc, UBYTE *argv[])
+void ShowAndWaitForLogo()
 {
-	WORD n;
-	ULONG memory;
 	ULONG memotimer;
-
-	DoInitialization(argv[0]);
 
 #ifndef DEBUG_TOOLS
 	// logo adeline
@@ -1438,8 +1434,11 @@ void main(int argc, UBYTE *argv[])
 	while (TimerRef < (memotimer + 50 * 4))
 		;
 #endif
+}
 
-		// check cd rom
+void CheckCDRom()
+{
+	// check cd rom
 
 #ifdef DEMO
 	FlaFromCD = TRUE;		 // fla sur HD
@@ -1468,6 +1467,16 @@ void main(int argc, UBYTE *argv[])
 #endif
 
 #endif
+}
+
+void main(int argc, UBYTE *argv[])
+{
+	WORD n;
+	ULONG memory;
+
+	DoInitialization(argv[0]);
+	ShowAndWaitForLogo();
+	CheckCDRom();
 
 	// divers malloc
 
