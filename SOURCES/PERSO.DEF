@@ -13,7 +13,7 @@ extern void DoInitialization(UBYTE *);
 void ShowAndWaitForLogo();
 void CheckCDRom();
 void AllocateMemory();
-void void ShowBumper();
+void ShowBumper();
 void ShowLogoEA();
 void ShowFLAIntro();
 void ShowMenu();
