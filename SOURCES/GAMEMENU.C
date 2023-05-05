@@ -2822,11 +2822,14 @@ void AdvancedOptions()
 
 LONG MainGameMenu()
 {
-	const int MENUOP_DEMO = 9999;
-	const int MENUOP_NEW_GAME = 20;
-	const int MENUOP_LOAD = 21;
-	const int MENUOP_QUIT = 22;
-	const int MENUOP_OPTIONS = 23;
+	enum
+	{
+		MENUOP_DEMO = 9999,
+		MENUOP_NEW_GAME = 20,
+		MENUOP_LOAD = 21,
+		MENUOP_QUIT = 22,
+		MENUOP_OPTIONS = 23
+	}
 
 	WORD select;
 	WORD flag = 0;
