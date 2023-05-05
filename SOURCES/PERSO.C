@@ -1412,13 +1412,13 @@ void DoInitialization(UBYTE *progpath)
 		}
 
 		//		InitPathMidiSampleFile( PATH_RESSOURCE ) ;
-
-		// presentation
-
-		Screen = Malloc(640 * 480 + 500); // + decomp marge
-		if (!Screen)
-			TheEnd(NOT_ENOUGH_MEM, "Screen");
 	}
+
+	// presentation
+
+	Screen = Malloc(640 * 480 + 500); // + decomp marge
+	if (!Screen)
+		TheEnd(NOT_ENOUGH_MEM, "Screen");
 }
 
 void main(int argc, UBYTE *argv[])
