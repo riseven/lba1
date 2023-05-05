@@ -2822,6 +2822,11 @@ void AdvancedOptions()
 
 LONG MainGameMenu()
 {
+	const int MENUOP_DEMO = 9999;
+	const int MENUOP_NEW_GAME = 20;
+	const int MENUOP_LOAD = 21;
+	const int MENUOP_QUIT = 22;
+	const int MENUOP_OPTIONS = 23;
 
 	WORD select;
 	WORD flag = 0;
@@ -2846,8 +2851,7 @@ LONG MainGameMenu()
 		select = DoGameMenu(GameMainMenu);
 		switch (select) // num mess
 		{
-		case 9999: // menu demo
-
+		case MENUOP_DEMO:
 			MenuDemo();
 			Load_HQR(PATH_RESSOURCE "ress.hqr", Screen, RESS_MENU_PCR);
 			CopyScreen(Screen, Log);
@@ -2857,11 +2861,11 @@ LONG MainGameMenu()
 			break;
 
 			//			case -1: // esc
-		case 22: // quitter
+		case MENUOP_QUIT:
 			flag = 1;
 			break;
 
-		case 20: // newgame
+		case MENUOP_NEW_GAME:
 
 			if (!InputPlayerName(42, 0))
 				break;
@@ -2879,7 +2883,7 @@ LONG MainGameMenu()
 				; // provisoire
 			break;
 
-		case 21: // load
+		case MENUOP_LOAD: // load
 
 			if (!ChoosePlayerName(21, 1, 0))
 				break;
@@ -2889,7 +2893,7 @@ LONG MainGameMenu()
 				; // provisoire
 			break;
 
-		case 23:
+		case MENUOP_OPTIONS:
 			CopyScreen(Screen, Log);
 			Flip();
 			GameOptionMenu[5] = 26; // retour prec
