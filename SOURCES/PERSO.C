@@ -1627,21 +1627,4 @@ void ShowMenu()
 	MainGameMenu();
 }
 
-void main(int argc, UBYTE *argv[])
-{
-	DoInitialization(argv[0]);
-	ShowAndWaitForLogo();
-	CheckCDRom();
-	AllocateMemory();
-
-#ifndef DEBUG_TOOLS
-	ShowBumper();
-	ShowLogoEA();
-	ShowFLAIntro();
-#endif
-
-	ShowMenu();
-	TheEnd(PROGRAM_OK, "");
-}
-
 /*══════════════════════════════════════════════════════════════════════════*/
