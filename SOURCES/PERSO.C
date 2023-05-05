@@ -1356,13 +1356,8 @@ void Message(UBYTE *mess, WORD flag)
 /*══════════════════════════════════════════════════════════════════════════*/
 /*══════════════════════════════════════════════════════════════════════════*/
 
-void main(int argc, UBYTE *argv[])
+void DoInitialization(UBYTE *progpath)
 {
-	WORD n;
-	ULONG memory;
-	ULONG memotimer;
-	UBYTE string[256];
-
 	_harderr(Critical_Error_Handler);
 
 #ifdef DEBUG_TOOLS
@@ -1370,7 +1365,7 @@ void main(int argc, UBYTE *argv[])
 	MemoDosMemory = (ULONG)DosMalloc(-1, NULL); // Dos memory at start
 #endif
 
-	GetDiskEnv(argv[0]); /* org path program path... */
+	GetDiskEnv(progpath); /* org path program path... */
 
 	InitProgram(); /* init graphmode timer ... */
 
@@ -1415,16 +1410,25 @@ void main(int argc, UBYTE *argv[])
 		}
 
 		//		InitPathMidiSampleFile( PATH_RESSOURCE ) ;
+
+		// presentation
+
+		Screen = Malloc(640 * 480 + 500); // + decomp marge
+		if (!Screen)
+			TheEnd(NOT_ENOUGH_MEM, "Screen");
 	}
+}
 
-	// presentation
+void main(int argc, UBYTE *argv[])
+{
+	WORD n;
+	ULONG memory;
+	ULONG memotimer;
+	UBYTE string[256];
 
-	Screen = Malloc(640 * 480 + 500); // + decomp marge
-	if (!Screen)
-		TheEnd(NOT_ENOUGH_MEM, "Screen");
+	DoInitialization(argv[0]);
 
 #ifndef DEBUG_TOOLS
-
 	// logo adeline
 	AdelineLogo();
 
