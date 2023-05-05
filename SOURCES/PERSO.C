@@ -1469,14 +1469,9 @@ void CheckCDRom()
 #endif
 }
 
-void main(int argc, UBYTE *argv[])
+void AllocateMemory()
 {
-	WORD n;
 	ULONG memory;
-
-	DoInitialization(argv[0]);
-	ShowAndWaitForLogo();
-	CheckCDRom();
 
 	// divers malloc
 
@@ -1590,6 +1585,16 @@ void main(int argc, UBYTE *argv[])
 	{
 		TheEnd(NOT_ENOUGH_MEM, "HQR_Anims");
 	}
+}
+
+void main(int argc, UBYTE *argv[])
+{
+	WORD n;
+
+	DoInitialization(argv[0]);
+	ShowAndWaitForLogo();
+	CheckCDRom();
+	AllocateMemory();
 
 #ifndef DEBUG_TOOLS
 	// bumper
