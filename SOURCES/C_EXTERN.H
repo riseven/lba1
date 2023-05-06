@@ -1,4 +1,4 @@
-#include	"defines.h"
+#include "defines.h"
 
 /* define _FAR before including any definitions, so it can be used */
 #ifdef __DOS__
@@ -10,372 +10,371 @@
 /*══════════════════════════════════════════════════════════════════════════*/
 /*──────────────────────────────────────────────────────────────────────────*/
 
-#include	"ambiance.def"
-#include	"diskfunc.def"
-#include	"extra.def"
-#include	"fiche.def"
-#include	"flipbox.def"
-#include	"gamemenu.def"
-#include	"gerelife.def"
-#include	"geretrak.def"
-#include	"grille.def"
-#include	"holomap.def"
-#include	"incrust.def"
-#include	"message.def"
-#include 	"msg_cust.def"
-#include	"object.def"
-#include	"perso.def"
-#include	"playfla.def"
+#include "ambiance.def"
+#include "diskfunc.def"
+#include "extra.def"
+#include "fiche.def"
+#include "flipbox.def"
+#include "gamemenu.def"
+#include "gerelife.def"
+#include "geretrak.def"
+#include "grille.def"
+#include "holomap.def"
+#include "incrust.def"
+#include "message.def"
+#include "msg_cust.def"
+#include "object.def"
+#include "perso.def"
+#include "playfla.def"
 
 /* prototype */
 
-char    *GetMultiText( LONG text, char *dst ) ;
+char *GetMultiText(LONG text, char *dst);
 
-WORD	GiveObjSelect( WORD type, LONG xm, LONG ym ) ;
+WORD GiveObjSelect(WORD type, LONG xm, LONG ym);
 
-UBYTE	WorldColBrick( WORD xw, WORD yw, WORD zw ) ;
+UBYTE WorldColBrick(WORD xw, WORD yw, WORD zw);
 
-WORD	ThrowExtra(	WORD owner,
-			WORD x, WORD y, WORD z, WORD num,
-			WORD alpha, WORD beta, WORD vitesse, WORD poids,
-			WORD hitforce ) ;
-WORD	GetValue() ;
+WORD ThrowExtra(WORD owner,
+								WORD x, WORD y, WORD z, WORD num,
+								WORD alpha, WORD beta, WORD vitesse, WORD poids,
+								WORD hitforce);
+WORD GetValue();
 
-WORD	GetListObjet( WORD x0, WORD y0 ) ;
+WORD GetListObjet(WORD x0, WORD y0);
 
-LONG	SceReadWord() ;
-WORD	SearchLastZoneSce() ;
+LONG SceReadWord();
+WORD SearchLastZoneSce();
 
-ULONG	HQ_MixSample( WORD numsample, WORD decalage, WORD repeat, WORD volleft, WORD volright ) ;
-void	HQ_StopOneSample( WORD num ) ;
+ULONG HQ_MixSample(WORD numsample, WORD decalage, WORD repeat, WORD volleft, WORD volright);
+void HQ_StopOneSample(WORD num);
 
-void	*LoadTestMalloc( char *filename ) ;
+void *LoadTestMalloc(char *filename);
 
-WORD	InitAnim( UBYTE gen_anim, WORD flag, UBYTE gen_nextanim, WORD numobj ) ;
-WORD	SearchAnim( UBYTE numanim, WORD numobj ) ;
-WORD	SearchBody( UBYTE numbody, WORD numobj ) ;
-void	LoadFic( UBYTE indexfileobjet, WORD numobj ) ;
+WORD InitAnim(UBYTE gen_anim, WORD flag, UBYTE gen_nextanim, WORD numobj);
+WORD SearchAnim(UBYTE numanim, WORD numobj);
+WORD SearchBody(UBYTE numbody, WORD numobj);
+void LoadFic(UBYTE indexfileobjet, WORD numobj);
 
 /*--------- divers ---------------------------------------------*/
 
-extern	UWORD	*BufOrder	;
-extern	UBYTE	*BufText 	;
-extern	UBYTE	*BufSpeak 	;
+extern UWORD *BufOrder;
+extern UBYTE *BufText;
+extern UBYTE *BufSpeak;
 
-extern	UBYTE	GamePathname[] ;
+extern UBYTE GamePathname[];
 
-extern	WORD	ComportementDebug;
+extern WORD ComportementDebug;
 
-extern	UBYTE	*LbaFont ;
-extern	UBYTE	*Screen	;
-extern	UBYTE	PalettePcx[] ;
-extern	UBYTE	*PtrPal ;
+extern UBYTE *LbaFont;
+extern UBYTE *Screen;
+extern UBYTE PalettePcx[];
+extern UBYTE *PtrPal;
 
-extern	WORD	MyJoy ;
-extern	WORD	MyFire ;
-extern	WORD	MyKey ;
+extern WORD MyJoy;
+extern WORD MyFire;
+extern WORD MyKey;
 
-extern	WORD	LastFire ;
+extern WORD LastFire;
 
-extern	LONG	FlagVsync ;
-extern	WORD	FlagMCGA ;
-extern	LONG	FlagCredits ;
+extern LONG FlagVsync;
+extern WORD FlagMCGA;
+extern LONG FlagCredits;
 
-extern	UBYTE	String[] ;
-extern	UBYTE	EditString[] ;
-extern	WORD	Value ;
+extern UBYTE String[];
+extern UBYTE EditString[];
+extern WORD Value;
 
-extern	LONG	SampleVolume, MusicVolume, CDVolume, LineVolume, MasterVolume ;
-extern	WORD	SamplesEnable ;
-extern	UBYTE	*PtrSample[] ;
+extern LONG SampleVolume, MusicVolume, CDVolume, LineVolume, MasterVolume;
+extern WORD SamplesEnable;
+extern UBYTE *PtrSample[];
 
-extern	WORD	QuickMessage ;
-extern	LONG	FlecheForcee ;
+extern WORD QuickMessage;
+extern LONG FlecheForcee;
 
-extern	WORD	FlagPalettePcx ;
-extern	WORD	FlagFade ;
-extern	WORD	FlagMessageShade ;
-extern	WORD	Bulle ;
-extern	WORD	FlagBlackPal ;
+extern WORD FlagPalettePcx;
+extern WORD FlagFade;
+extern WORD FlagMessageShade;
+extern WORD Bulle;
+extern WORD FlagBlackPal;
 
-extern	WORD	FlaFromCD ;
-extern	UBYTE	PathFla[] ;
+extern WORD FlaFromCD;
+extern UBYTE PathFla[];
 
-extern	LONG	Version_US ;
+extern LONG Version_US;
 
-extern	WORD	FlagWindowsFilenameSaving;
+extern WORD FlagWindowsFilenameSaving;
 
 /*-------- RESSOURCES ---------------------------------------------*/
 
-extern	T_HQR_HEADER	*HQR_Samples ;
-extern	T_HQR_HEADER	*HQR_Midi ;
-extern	T_HQR_HEADER	*InventoryObj ;
+extern T_HQR_HEADER *HQR_Samples;
+extern T_HQR_HEADER *HQR_Midi;
+extern T_HQR_HEADER *InventoryObj;
 
 /*-------- DISKFUNC.C ---------------------------------------------*/
 
-extern	char	PleaseWait[] ;
+extern char PleaseWait[];
 
-extern	UBYTE	ProgDrive[] ;
-extern	UBYTE	ProgDir[] ;
+extern UBYTE ProgDrive[];
+extern UBYTE ProgDir[];
 
-extern	UINT	OrgDrive ;
-extern	UBYTE	OrgDir[] ;
+extern UINT OrgDrive;
+extern UBYTE OrgDir[];
 
-extern	UBYTE	Drive[] ;
-extern	UBYTE	Dir[] ;
-extern	UBYTE	Name[] ;
-extern	UBYTE	Ext[] ;
+extern UBYTE Drive[];
+extern UBYTE Dir[];
+extern UBYTE Name[];
+extern UBYTE Ext[];
 
-extern	UBYTE	OrgPathname[] ;
-extern	UBYTE	ProgramPathname[] ;
+extern UBYTE OrgPathname[];
+extern UBYTE ProgramPathname[];
 
-extern	UBYTE	Pathname[] ;
+extern UBYTE Pathname[];
 
-extern	UBYTE	FliPathname[_MAX_PATH] ;
+extern UBYTE FliPathname[_MAX_PATH];
 
 /*-------- SCRIPT.C ---------------------------------------------*/
 
-extern	UBYTE	FicName[] ;
-extern	UBYTE	*PtrFiche ;
-extern	UBYTE	*PtrCommand ;
-extern	UBYTE	*PtrFicName ;
+extern UBYTE FicName[];
+extern UBYTE *PtrFiche;
+extern UBYTE *PtrCommand;
+extern UBYTE *PtrFicName;
 
 /*-------- FLIP_BOX.C ---------------------------------------------*/
 
-extern	WORD	NbPhysBox ;
-extern	WORD	NbOptPhysBox ;
+extern WORD NbPhysBox;
+extern WORD NbOptPhysBox;
 
 /*-------- LIB_SVGA ---------------------------------------------*/
 
-extern	WORD	NbPolyPoints ;
+extern WORD NbPolyPoints;
 
 /*-------- life tool ---------------------------------------------*/
 
-extern	WORD	ErrorFlag ;
+extern WORD ErrorFlag;
 
-extern	WORD	FlagInfos ;
+extern WORD FlagInfos;
 
-extern	WORD	Modif ;
+extern WORD Modif;
 
-extern	UBYTE	DefPathname[] ;
-extern	UBYTE	ScePathname[] ;
-extern	UBYTE	PcxPathname[] ;
+extern UBYTE DefPathname[];
+extern UBYTE ScePathname[];
+extern UBYTE PcxPathname[];
 
-extern	WORD	FlagFrame ;
+extern WORD FlagFrame;
 
-extern	T_ZONE	*ListZone ;
-extern	WORD	NbZones ;
+extern T_ZONE *ListZone;
+extern WORD NbZones;
 
-extern	WORD	IndexZone ;
-extern	WORD	EditNumZone ;
-extern	WORD	EditTypeZone ;
-extern	WORD	VisuTypeZone ;
+extern WORD IndexZone;
+extern WORD EditNumZone;
+extern WORD EditTypeZone;
+extern WORD VisuTypeZone;
 
-extern	UBYTE	*ListTypeZone[] ;
+extern UBYTE *ListTypeZone[];
 
-extern	T_TRACK	*ListBrickTrack ;
-extern	WORD	NbBrickTrack ;
+extern T_TRACK *ListBrickTrack;
+extern WORD NbBrickTrack;
 
-extern	WORD	IndexBrickTrack ;
-extern	WORD	EditNumTrack ;
+extern WORD IndexBrickTrack;
+extern WORD EditNumTrack;
 
-extern	WORD	ActiveEdit ;
+extern WORD ActiveEdit;
 
 /*
 extern	T_FLAG	ListFlagCube[] ;
 extern	T_FLAG	ListFlagGame[] ;
 */
-extern	UBYTE	ListFlagCube[] ;
-extern	UBYTE	ListFlagGame[] ;
+extern UBYTE ListFlagCube[];
+extern UBYTE ListFlagGame[];
 
-extern T_AUX_FLAG_CUBE ListAuxFlagCube[]; //auxiliary cube flags set aside from the original ListFlagCube, to aid in manual saving
+extern T_AUX_FLAG_CUBE ListAuxFlagCube[]; // auxiliary cube flags set aside from the original ListFlagCube, to aid in manual saving
 
-extern	UBYTE	ListFlagInventory[] ;
+extern UBYTE ListFlagInventory[];
 
-
-extern	UBYTE	*ListMove[] ;
+extern UBYTE *ListMove[];
 
 /*--------- holomap ----------------------------*/
 
-//extern	T_HOLO_OBJ	ListHoloObj[MAX_HOLO_OBJ] ;
-//extern	WORD		NbHoloObj ;
+// extern	T_HOLO_OBJ	ListHoloObj[MAX_HOLO_OBJ] ;
+// extern	WORD		NbHoloObj ;
 
-extern	T_HOLO_POS	*ListHoloPos ; // [MAX_HOLO_POS] ;
-extern	UBYTE	TabHoloPos[] ;
+extern T_HOLO_POS *ListHoloPos; // [MAX_HOLO_POS] ;
+extern UBYTE TabHoloPos[];
 
 /*--------- menus -----------------------------*/
 
-extern	WORD	GameChoice ;
-extern	WORD	GameNbChoices ;
-extern	WORD	GameListChoice[] ;
+extern WORD GameChoice;
+extern WORD GameNbChoices;
+extern WORD GameListChoice[];
 
 /*--------- perso ----------------------------*/
 
-extern	WORD	PersoInvulnerable;
+extern WORD PersoInvulnerable;
 
-extern	WORD	FlagTheEnd ;
+extern WORD FlagTheEnd;
 
-extern	WORD	ActionNormal ;
-extern	WORD	InventoryAction ;
-extern	WORD	Weapon ;
+extern WORD ActionNormal;
+extern WORD InventoryAction;
+extern WORD Weapon;
 
-extern	WORD	Comportement ;
-extern	WORD	AnimRien ;
-extern	WORD	AnimRienNormal, AnimRienSportif, AnimRienAgressif, AnimRienDiscret, AnimRienProtopack ;
+extern WORD Comportement;
+extern WORD AnimRien;
+extern WORD AnimRienNormal, AnimRienSportif, AnimRienAgressif, AnimRienDiscret, AnimRienProtopack;
 
-extern	UBYTE	*PtrFile3dNormal ;
-extern	UBYTE	*PtrFile3dSportif ;
-extern	UBYTE	*PtrFile3dAgressif ;
-extern	UBYTE	*PtrFile3dDiscret ;
-extern	UBYTE	*PtrFile3dProtopack ;
+extern UBYTE *PtrFile3dNormal;
+extern UBYTE *PtrFile3dSportif;
+extern UBYTE *PtrFile3dAgressif;
+extern UBYTE *PtrFile3dDiscret;
+extern UBYTE *PtrFile3dProtopack;
 
-extern	WORD	SceZoom ;
-extern	WORD	Shadow ;
-extern	WORD	ShadowX, ShadowY, ShadowZ ;
-extern	UBYTE	ShadowCol ;
+extern WORD SceZoom;
+extern WORD Shadow;
+extern WORD ShadowX, ShadowY, ShadowZ;
+extern UBYTE ShadowCol;
 
-extern	WORD	NumHolomapTraj ;
-extern	WORD	FlagChgCube, NewCube, NumCube ;
-extern	WORD	NewPosX, NewPosY, NewPosZ ;
-extern	WORD	SceneStartX, SceneStartY, SceneStartZ ;
-extern	WORD	CubeStartX, CubeStartY, CubeStartZ ;
-extern	WORD	GameOverCube ;
+extern WORD NumHolomapTraj;
+extern WORD FlagChgCube, NewCube, NumCube;
+extern WORD NewPosX, NewPosY, NewPosZ;
+extern WORD SceneStartX, SceneStartY, SceneStartZ;
+extern WORD CubeStartX, CubeStartY, CubeStartZ;
+extern WORD GameOverCube;
 
-extern	WORD	CombatAuto ;
-extern	WORD	MagicBall ;
-extern	WORD	MagicBallType ;
-extern	WORD	MagicBallCount ;
+extern WORD CombatAuto;
+extern WORD MagicBall;
+extern WORD MagicBallType;
+extern WORD MagicBallCount;
 
-extern	WORD	MagicLevel ;
-extern	WORD	MagicPoint ;
-extern	WORD	NbGoldPieces ;
-extern	WORD	NbLittleKeys ;
-extern	WORD	Chapitre ;
-extern	UBYTE	Island 	;
-extern	WORD	Fuel ;
-extern	WORD	NumPingouin ;
+extern WORD MagicLevel;
+extern WORD MagicPoint;
+extern WORD NbGoldPieces;
+extern WORD NbLittleKeys;
+extern WORD Chapitre;
+extern UBYTE Island;
+extern WORD Fuel;
+extern WORD NumPingouin;
 
-extern	WORD	HasLoadedSave ;
-extern	WORD	HasLoadedListObjetsOnSave;
-extern	WORD	HasLoadedListObjetTracksOnSave;
-extern	WORD	HasLoadedListExtraOnSave;
-extern	WORD	HasLoadedListZoneOnSave;
-extern	WORD	HasLoadedKeysOnSave ;
-extern	WORD	HasLoadedInventoryOnSave;
-extern	WORD	HasLoadedListFlagCubeOnSave;
-extern	WORD	HasLoadedListAuxFlagCubeOnSave;
-extern	WORD	HasLoadedLastValidPersoOnSave;
-extern	WORD	DisableAutoSave;
+extern WORD HasLoadedSave;
+extern WORD HasLoadedListObjetsOnSave;
+extern WORD HasLoadedListObjetTracksOnSave;
+extern WORD HasLoadedListExtraOnSave;
+extern WORD HasLoadedListZoneOnSave;
+extern WORD HasLoadedKeysOnSave;
+extern WORD HasLoadedInventoryOnSave;
+extern WORD HasLoadedListFlagCubeOnSave;
+extern WORD HasLoadedListAuxFlagCubeOnSave;
+extern WORD HasLoadedLastValidPersoOnSave;
+extern WORD DisableAutoSave;
 
-extern	WORD	NbFourLeafClover ;
-extern	WORD	NbCloverBox ;
+extern WORD NbFourLeafClover;
+extern WORD NbCloverBox;
 
-extern	WORD		FlagClimbing ;
-extern	WORD		StartYFalling ;
-extern	T_REAL_VALUE	RealFalling ;
-extern	WORD		StepFalling ;
+extern WORD FlagClimbing;
+extern WORD StartYFalling;
+extern T_REAL_VALUE RealFalling;
+extern WORD StepFalling;
 
-extern	UBYTE	CodeJeu ;
-extern	WORD	FlagWater ;
+extern UBYTE CodeJeu;
+extern WORD FlagWater;
 
 // perso sauvegarde entrée cube
 
-extern	WORD	SaveCube ;
-extern	WORD	SaveComportement ;
+extern WORD SaveCube;
+extern WORD SaveComportement;
 
-extern	char	SaveStringBody[SIZE_NAME+1] ;
-extern	BYTE	SaveGenBody ;
+extern char SaveStringBody[SIZE_NAME + 1];
+extern BYTE SaveGenBody;
 
-extern	WORD	SaveBeta ;
-extern	WORD	SaveNbGoldPieces ;
-extern	WORD	SaveMagicLevel ;
-extern	WORD	SaveMagicPoint ;
-extern	WORD	SaveLifePoint ;
-extern	WORD	SaveChapitre ;
-extern	WORD	SaveNbCloverBox ;
-extern	WORD	SaveNbFourLeafClover ;
+extern WORD SaveBeta;
+extern WORD SaveNbGoldPieces;
+extern WORD SaveMagicLevel;
+extern WORD SaveMagicPoint;
+extern WORD SaveLifePoint;
+extern WORD SaveChapitre;
+extern WORD SaveNbCloverBox;
+extern WORD SaveNbFourLeafClover;
 
-extern  WORD	WallColDamageEnabled ;	// 0: disabled, 1: enabled
+extern WORD WallColDamageEnabled; // 0: disabled, 1: enabled
 
 /*--------- Extra objs ----------------------------*/
 
-extern	T_EXTRA	ListExtra[] ;
+extern T_EXTRA ListExtra[];
 
-//extern	UBYTE	*PtrSpriteExtra ;
-extern	T_HQR_HEADER	*HQRPtrSpriteExtra ;
-extern	WORD	*PtrZvExtra ;
+// extern	UBYTE	*PtrSpriteExtra ;
+extern T_HQR_HEADER *HQRPtrSpriteExtra;
+extern WORD *PtrZvExtra;
 
 /*---------------- incrust display ----------------*/
 
-extern	T_INCRUST_DISP	ListIncrustDisp[] ;
+extern T_INCRUST_DISP ListIncrustDisp[];
 
 /*-------- Moteur 3D ---------------------------------------------*/
 
-extern	UBYTE	*BufferShadow ;
+extern UBYTE *BufferShadow;
 
-extern	UBYTE	*BufferAnim ;
-extern	UBYTE	*PtrBufferAnim ;
+extern UBYTE *BufferAnim;
+extern UBYTE *PtrBufferAnim;
 
-extern	LONG	NbBodys ;
-extern	UBYTE	*PtrBody[] ;
-extern	T_HQR_HEADER	*HQR_Anims ;
+extern LONG NbBodys;
+extern UBYTE *PtrBody[];
+extern T_HQR_HEADER *HQR_Anims;
 
-extern	LONG	NbObjets ;
-extern	T_OBJET	ListObjet[] ;
-extern	T_OBJET LastValidPerso;
+extern LONG NbObjets;
+extern T_OBJET ListObjet[];
+extern T_OBJET LastValidPerso;
 
-extern	T_SORT	ListTri[] ;
+extern T_SORT ListTri[];
 
-extern	WORD	NumObjFollow ;
+extern WORD NumObjFollow;
 
 /*--------- ambiance ----------------------------*/
 
-extern	WORD	SampleAmbiance[] ;
-extern	WORD	SampleRepeat[] ;
-extern	WORD	SampleRnd[] ;
-extern	WORD	SamplePlayed ;
-extern	ULONG	TimerNextAmbiance ;
-extern	WORD	SecondEcart ;
-extern	WORD	SecondMin ;
-extern	WORD	CubeJingle ;
-extern	UBYTE	*PtrXmi ;
-extern	WORD	NumXmi ;
+extern WORD SampleAmbiance[];
+extern WORD SampleRepeat[];
+extern WORD SampleRnd[];
+extern WORD SamplePlayed;
+extern ULONG TimerNextAmbiance;
+extern WORD SecondEcart;
+extern WORD SecondMin;
+extern WORD CubeJingle;
+extern UBYTE *PtrXmi;
+extern WORD NumXmi;
 
 /*-------- Brick ISO ---------------------------------------------*/
 
-#ifdef	BRICK_HQR
-extern	UBYTE	*BufferBrick	;
+#ifdef BRICK_HQR
+extern UBYTE *BufferBrick;
 #endif
-extern	UBYTE	*BufCube ;
+extern UBYTE *BufCube;
 
-extern	WORD	FirstTime ;
-extern	WORD	CameraZone ;
+extern WORD FirstTime;
+extern WORD CameraZone;
 
-extern	LONG	StartXCube ;
-extern	LONG	StartYCube ;
-extern	LONG	StartZCube ;
+extern LONG StartXCube;
+extern LONG StartYCube;
+extern LONG StartZCube;
 
-extern	LONG	WorldXCube ;
-extern	LONG	WorldYCube ;
-extern	LONG	WorldZCube ;
+extern LONG WorldXCube;
+extern LONG WorldYCube;
+extern LONG WorldZCube;
 
-extern	WORD	XpOrgw ;
-extern	WORD	YpOrgw ;
+extern WORD XpOrgw;
+extern WORD YpOrgw;
 
-extern	WORD	LastXmBrickSelected ;
-extern	WORD	LastYmBrickSelected ;
-extern	WORD	LastZmBrickSelected ;
+extern WORD LastXmBrickSelected;
+extern WORD LastYmBrickSelected;
+extern WORD LastZmBrickSelected;
 
-extern	UBYTE	*BufCollis ;
+extern UBYTE *BufCollis;
 
-extern	WORD	CubeClip ;
-extern	WORD	CubeClipX, CubeClipY, CubeClipZ ;
+extern WORD CubeClip;
+extern WORD CubeClipX, CubeClipY, CubeClipZ;
 
-extern	WORD	FlagAffGrille ;
+extern WORD FlagAffGrille;
 /*--------- Message ---------------------------------------------*/
 
-extern	WORD	NumObjSpeak ;
-extern	LONG	FlagSpeak ;
+extern WORD NumObjSpeak;
+extern LONG FlagSpeak;
 
-
-
+/* NEW */
+extern UWORD *GameMainMenu;
