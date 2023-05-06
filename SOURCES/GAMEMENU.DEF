@@ -35,7 +35,6 @@ extern long OptionsMenu(void);
 extern void VolumeOptions(void);
 extern void SavedGameManagement(void);
 extern void AdvancedOptions(void);
-extern long MainGameMenu(void);
 extern long QuitMenu(short );
 extern void GameAskChoice(short );
 extern void GameOver(void);
