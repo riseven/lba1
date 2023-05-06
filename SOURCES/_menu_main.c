@@ -53,14 +53,6 @@ LONG MainGameMenu()
       if (!InputPlayerName(42, 0))
         break;
 
-      /**do
-      {
-        strcpy( GamePathname, PATH_RESSOURCE"S" ) ;
-        strcat( GamePathname, Itoa( Rnd(10000) ) ) ;
-        strcat( GamePathname, ".LBA" ) ;
-      }
-      while( FileSize( GamePathname ) != 0 ) ;*/
-
       MenuInitGame(1, 0, 1);
       while (Key OR Fire)
         ; // provisoire
