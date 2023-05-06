@@ -1,4 +1,4 @@
-#include "..\c_extern.h"
+#include "c_extern.h"
 
 void main(int argc, char *argv[])
 {
