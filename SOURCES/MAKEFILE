@@ -48,7 +48,7 @@ OBJECTS += Message.obj ambiance.obj Balance.obj gamemenu.obj fire.obj
 OBJECTS += geretrak.obj gerelife.obj
 OBJECTS += HoloMap.obj playfla.obj adfli_a.obj mcga.obj
 OBJECTS += msg_cust.obj
-OBJECTS += _main.obj _menu_main.c
+OBJECTS += _main.obj _menu_main.obj
 
 LIBS  = $(%LIB386_PATH)\LIB_3D\LIB_3D.LIB
 LIBS += $(%LIB386_PATH)\LIB_CD\LIB_CD.LIB
