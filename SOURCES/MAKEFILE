@@ -79,6 +79,6 @@ $(LIBS):
 	PRNTITRE M "$*.ASM"
 	$(ASM) $(AFLAGS) $^&.ASM
 
-# main\main.obj:
-# # PRNTITRE M "$*.C"
-# 	$(CC) main\main.c $(CFLAGS)
+Init\main.obj:
+# PRNTITRE M "$*.C"
+	$(CC) Init\main.c $(CFLAGS)
