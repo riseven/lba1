@@ -1,16 +1,16 @@
 #include "c_extern.h"
 
+enum
+{
+  MENUOP_DEMO = 9999,
+  MENUOP_NEW_GAME = 20,
+  MENUOP_LOAD = 21,
+  MENUOP_QUIT = 22,
+  MENUOP_OPTIONS = 23
+};
+
 LONG MainGameMenu()
 {
-  enum
-  {
-    MENUOP_DEMO = 9999,
-    MENUOP_NEW_GAME = 20,
-    MENUOP_LOAD = 21,
-    MENUOP_QUIT = 22,
-    MENUOP_OPTIONS = 23
-  };
-
   WORD select;
   WORD flag = 0;
 
