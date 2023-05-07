@@ -23,6 +23,14 @@ void PlayTrackMenu()
 #endif
 }
 
+void WaitReleaseKey()
+{
+  while (Key OR Fire)
+  {
+    // Empty loop
+  }
+}
+
 void ShowMenuDemo()
 {
   MenuDemo();
@@ -39,8 +47,7 @@ void SelectNewGame()
     break;
 
   MenuInitGame(1, 0, 1);
-  while (Key OR Fire)
-    ; // provisoire
+  WaitReleaseKey()
 }
 
 void SelectMenuLoad()
@@ -49,8 +56,7 @@ void SelectMenuLoad()
     break;
 
   MenuInitGame(-1, 0, 0);
-  while (Key OR Fire)
-    ; // provisoire
+  WaitReleaseKey()
 }
 
 void SelectMenuOptions()
@@ -64,12 +70,12 @@ void SelectMenuOptions()
 LONG MainGameMenu()
 {
   WORD select;
-  WORD flag = 0;
+  bool quit = false;
 
   HQ_StopSample();
   CopyScreen(Log, Screen);
 
-  while (!flag)
+  while (!quit)
   {
     InitDialMainMenu();
     PlayTrackMenu();
@@ -84,10 +90,6 @@ LONG MainGameMenu()
       ShowMenuDemo();
       break;
 
-    case MenuOp_Quit:
-      flag = 1;
-      break;
-
     case MenuOp_NewGame:
       SelectNewGame();
       break;
@@ -98,6 +100,10 @@ LONG MainGameMenu()
 
     case MenuOp_Options:
       SelectMenuOptions();
+      break;
+
+    case MenuOp_Quit:
+      quit = true;
       break;
     }
   }
