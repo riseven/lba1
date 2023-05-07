@@ -23,6 +23,44 @@ void PlayTrackMenu()
 #endif
 }
 
+void ShowMenuDemo()
+{
+  MenuDemo();
+  Load_HQR(PATH_RESSOURCE "ress.hqr", Screen, RESS_MENU_PCR);
+  CopyScreen(Screen, Log);
+  SetBlackPal();
+  Flip();
+  FadeToPal(PtrPal);
+}
+
+void SelectNewGame()
+{
+  if (!InputPlayerName(42, 0))
+    break;
+
+  MenuInitGame(1, 0, 1);
+  while (Key OR Fire)
+    ; // provisoire
+}
+
+void SelectMenuLoad()
+{
+  if (!ChoosePlayerName(21, 1, 0))
+    break;
+
+  MenuInitGame(-1, 0, 0);
+  while (Key OR Fire)
+    ; // provisoire
+}
+
+void SelectMenuOptions()
+{
+  CopyScreen(Screen, Log);
+  Flip();
+  GameOptionMenu[5] = 26; // retour prec
+  OptionsMenu();
+}
+
 LONG MainGameMenu()
 {
   WORD select;
@@ -40,47 +78,26 @@ LONG MainGameMenu()
     GetMultiText(49, PleaseWait);
 
     select = DoGameMenu(GameMainMenu);
-    switch (select) // num mess
+    switch (select)
     {
     case MenuOp_Demo:
-      MenuDemo();
-      Load_HQR(PATH_RESSOURCE "ress.hqr", Screen, RESS_MENU_PCR);
-      CopyScreen(Screen, Log);
-      SetBlackPal();
-      Flip();
-      FadeToPal(PtrPal);
+      ShowMenuDemo();
       break;
 
-      //			case -1: // esc
     case MenuOp_Quit:
       flag = 1;
       break;
 
     case MenuOp_NewGame:
-
-      if (!InputPlayerName(42, 0))
-        break;
-
-      MenuInitGame(1, 0, 1);
-      while (Key OR Fire)
-        ; // provisoire
+      SelectNewGame();
       break;
 
-    case MenuOp_Load: // load
-
-      if (!ChoosePlayerName(21, 1, 0))
-        break;
-
-      MenuInitGame(-1, 0, 0);
-      while (Key OR Fire)
-        ; // provisoire
+    case MenuOp_Load:
+      SelectMenuLoad();
       break;
 
     case MenuOp_Options:
-      CopyScreen(Screen, Log);
-      Flip();
-      GameOptionMenu[5] = 26; // retour prec
-      OptionsMenu();
+      SelectMenuOptions();
       break;
     }
   }
