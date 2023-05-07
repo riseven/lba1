@@ -2,12 +2,26 @@
 
 enum
 {
-  MENUOP_DEMO = 9999,
-  MENUOP_NEW_GAME = 20,
-  MENUOP_LOAD = 21,
-  MENUOP_QUIT = 22,
-  MENUOP_OPTIONS = 23
+  MenuOp_Demo = 9999,
+  MenuOp_NewGame = 20,
+  MenuOp_Load = 21,
+  MenuOp_Quit = 22,
+  MenuOp_Options = 23
 };
+
+void InitDialMainMenu()
+{
+  InitDial(0);
+}
+
+void PlayTrackMenu()
+{
+#ifdef CDROM
+  PlayCdTrack(9);
+#else
+  PlayMidiFile(9);
+#endif
+}
 
 LONG MainGameMenu()
 {
@@ -15,18 +29,12 @@ LONG MainGameMenu()
   WORD flag = 0;
 
   HQ_StopSample();
-
   CopyScreen(Log, Screen);
 
   while (!flag)
   {
-    InitDial(0); //	SYS
-
-#ifdef CDROM
-    PlayCdTrack(9);
-#else
-    PlayMidiFile(9);
-#endif
+    InitDialMainMenu();
+    PlayTrackMenu();
     HQ_StopSample();
 
     GetMultiText(49, PleaseWait);
@@ -34,7 +42,7 @@ LONG MainGameMenu()
     select = DoGameMenu(GameMainMenu);
     switch (select) // num mess
     {
-    case MENUOP_DEMO:
+    case MenuOp_Demo:
       MenuDemo();
       Load_HQR(PATH_RESSOURCE "ress.hqr", Screen, RESS_MENU_PCR);
       CopyScreen(Screen, Log);
@@ -44,11 +52,11 @@ LONG MainGameMenu()
       break;
 
       //			case -1: // esc
-    case MENUOP_QUIT:
+    case MenuOp_Quit:
       flag = 1;
       break;
 
-    case MENUOP_NEW_GAME:
+    case MenuOp_NewGame:
 
       if (!InputPlayerName(42, 0))
         break;
@@ -58,7 +66,7 @@ LONG MainGameMenu()
         ; // provisoire
       break;
 
-    case MENUOP_LOAD: // load
+    case MenuOp_Load: // load
 
       if (!ChoosePlayerName(21, 1, 0))
         break;
@@ -68,7 +76,7 @@ LONG MainGameMenu()
         ; // provisoire
       break;
 
-    case MENUOP_OPTIONS:
+    case MenuOp_Options:
       CopyScreen(Screen, Log);
       Flip();
       GameOptionMenu[5] = 26; // retour prec
