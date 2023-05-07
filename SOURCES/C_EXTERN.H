@@ -378,3 +378,4 @@ extern LONG FlagSpeak;
 
 /* NEW */
 extern UWORD GameMainMenu[];
+extern UWORD GameOptionMenu[];
