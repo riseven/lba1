@@ -377,4 +377,4 @@ extern WORD NumObjSpeak;
 extern LONG FlagSpeak;
 
 /* NEW */
-extern UWORD *GameMainMenu;
+extern UWORD GameMainMenu[];
